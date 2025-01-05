@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using MailKit.Net.Smtp;
 using MimeKit;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace BeApi.Services
 {
@@ -14,13 +15,15 @@ namespace BeApi.Services
         private readonly IConfiguration _config;
         private readonly string _issuer;
         private readonly string _secretKey;
-        public Common(IConfiguration config)
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        public Common(IConfiguration config, IWebHostEnvironment hostingEnvironment)
         {
             _config = config;
 
             _secretKey = _config["JWTKey"] ?? "";
             _issuer = _config["Issuer"] ?? "";
             _audience = _config["Audience"] ?? "";
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public string GenerateToken(int userId, string role, int numberMinutesExpires)
@@ -133,6 +136,23 @@ namespace BeApi.Services
             var random = new Random();
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        public async Task<string> PathFileUpload(IFormFile file)
+        {
+            string path = string.Empty;
+            if (file != null)
+            {
+                string uploadsFolder = Path.Combine(_hostingEnvironment.ContentRootPath, "wwwroot/upload");
+
+                path = DateTime.Now.Ticks.ToString() + Path.GetExtension(file.FileName);
+                string filePath = Path.Combine(uploadsFolder, path);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                }
+            }
+            return $"/upload/upload/{path}";
         }
     }
 }

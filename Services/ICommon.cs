@@ -10,6 +10,7 @@ namespace BeApi.Services
         bool SendMail(string to, string subject, string body);
         string GenerateRandomString(int length);
         string GenerateRandomNumber(int length);
+        Task<string> PathFileUpload(IFormFile file);
     }
     
 }

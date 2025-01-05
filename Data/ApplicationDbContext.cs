@@ -7,4 +7,6 @@ public class ApplicationDbContext : DbContext
     {
     }
     public DbSet<Users> Users { get; set; }
+    public DbSet<FileImport> FileImport { get; set; }
+    public DbSet<AdmissionProfile> AdmissionProfile { get; set; }
 }
