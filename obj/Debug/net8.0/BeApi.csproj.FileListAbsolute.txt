@@ -147,3 +147,4 @@
 /Users/user/Desktop/Code_Data/DoAnSv/QuanLyTruongHoc/BE/BeApi/bin/Debug/net8.0/MimeKit.dll
 /Users/user/Desktop/Code_Data/DoAnSv/QuanLyTruongHoc/BE/BeApi/bin/Debug/net8.0/System.Security.Cryptography.Pkcs.dll
 /Users/user/Desktop/Code_Data/DoAnSv/QuanLyTruongHoc/BE/BeApi/bin/Debug/net8.0/runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll
+/Users/user/Desktop/Code_Data/DoAnSv/QuanLyTruongHoc/BE/BeApi/obj/Debug/net8.0/BeApi.sourcelink.json

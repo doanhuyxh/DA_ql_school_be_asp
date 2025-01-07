@@ -3,6 +3,7 @@ using BeApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250105165023_initDb")]
+    partial class initDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,19 +35,7 @@ namespace BeApi.Migrations
                     b.Property<string>("AdmissionProfileCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AvatarPath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BirthCertificatePath")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CitizenIdentificationCard")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CitizenIdentificationCardAfterPath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CitizenIdentificationCardBeforPath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Class")
@@ -111,9 +102,6 @@ namespace BeApi.Migrations
                     b.Property<string>("FacultyName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MajorId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Faculty");
@@ -173,15 +161,6 @@ namespace BeApi.Migrations
 
                     b.Property<string>("ClassName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FacultyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MajorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

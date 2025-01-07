@@ -53,9 +53,7 @@ public class UserManagerController : ControllerBase
         {
             return Ok(new ResponeDataViewModel(ResponseStatusCode.NotFound, "User not found"));
         }
-
-        userUpdate.FirstName = user.FirstName;
-        userUpdate.LastName = user.LastName;
+        
         userUpdate.Role = user.Role;
         _context.Update(userUpdate);
         _context.SaveChanges();
@@ -111,8 +109,6 @@ public class UserManagerController : ControllerBase
         var userCreate = new Users
         {
             Email = user.Email,
-            FirstName = user.FirstName,
-            LastName = user.LastName,
             Role = user.Role,
             Password = _common.HashPasswordWithMD5(user.Password ?? "")
         };
