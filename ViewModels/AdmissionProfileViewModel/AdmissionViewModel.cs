@@ -19,11 +19,13 @@ namespace BeApi.ViewModels.AdmissionProfileViewModel
         public string? CitizenIdentificationCardAfterPath { set; get; }
         public string? HealthInsuranceNumber { set; get; }
         public string? Email { set; get; }
+        public string? CurrentAddress { set; get; }
+        public string? PermanentAddress { set; get; }
         public string? PhoneNumber { set; get; }
         public bool IsSendMail { set; get; }
-        public bool IsPayment { set; get; }
-        public string? Class { set; get; } 
-        public string? StudentCode { set; get; }
+        
+        public string? BirthCertificatePath { set; get; } 
+        
         public bool IsMatriculated { set; get; }
         
         public IFormFile? AvatarFile { set; get; }
@@ -42,9 +44,11 @@ namespace BeApi.ViewModels.AdmissionProfileViewModel
                 FirstName = item.FirstName,
                 LastName = item.LastName,
                 DateOfBirth = item.DateOfBirth,
-                BirthCertificatePath = item.BirthCertificate,
+                BirthCertificatePath = item.BirthCertificatePath,
                 Gender = item.Gender,
                 PlaceOfBirth = item.PlaceOfBirth,
+                CurrentAddress = item.CurrentAddress,
+                PermanentAddress = item.PermanentAddress,
                 CitizenIdentificationCard = item.CitizenIdentificationCard,
                 CitizenIdentificationCardBeforPath = item.CitizenIdentificationCardBeforPath,
                 CitizenIdentificationCardAfterPath = item.CitizenIdentificationCardAfterPath,
@@ -52,9 +56,6 @@ namespace BeApi.ViewModels.AdmissionProfileViewModel
                 Email = item.Email,
                 PhoneNumber = item.PhoneNumber,
                 IsSendMail = item.IsSendMail,
-                IsPayment = item.IsPayment,
-                Class = item.Class,
-                StudentCode = item.StudentCode,
                 IsMatriculated = item.IsMatriculated
             };
         }

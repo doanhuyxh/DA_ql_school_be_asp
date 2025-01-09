@@ -144,6 +144,10 @@ namespace BeApi.Services
             if (file != null)
             {
                 string uploadsFolder = Path.Combine(_hostingEnvironment.ContentRootPath, "wwwroot/upload");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
 
                 path = DateTime.Now.Ticks.ToString() + Path.GetExtension(file.FileName);
                 string filePath = Path.Combine(uploadsFolder, path);
@@ -152,7 +156,7 @@ namespace BeApi.Services
                     await file.CopyToAsync(fileStream);
                 }
             }
-            return $"/upload/upload/{path}";
+            return $"/upload/{path}";
         }
     }
 }

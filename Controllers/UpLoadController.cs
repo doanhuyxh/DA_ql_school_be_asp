@@ -2,10 +2,13 @@ using BeApi.Data;
 using BeApi.Models;
 using BeApi.Services;
 using BeApi.ViewModels;
+using BeApi.ViewModels.FileImportViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeApi.Controllers;
 
+[Route("api/v1/upload")]
+[ApiController]
 public class UpLoadController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
@@ -18,9 +21,14 @@ public class UpLoadController : ControllerBase
     }
     
     [HttpGet("get-file-import-by-type")]
-    public IActionResult GetFileImportByType([FromQuery] string type)
+    public IActionResult GetFileImportByType([FromQuery] string type ="")
     {
-        var fileImport = _context.FileImport.Where(x => x.Type == type).ToList();
+        var query = _context.FileImport.AsQueryable();
+        if (!string.IsNullOrEmpty(type))
+        {
+            query = query.Where(x => x.Type == type);
+        }
+        var fileImport = query.OrderByDescending(i=>i.Id).ToList();
         return Ok(new ResponeDataViewModel(ResponseStatusCode.Success, fileImport));
     }
     
@@ -41,5 +49,14 @@ public class UpLoadController : ControllerBase
         _context.Add(fileImport);
         _context.SaveChanges();
         return Ok(new ResponeDataViewModel(ResponseStatusCode.Success));
+    }
+    
+    [HttpPost("upload-file")]
+    public IActionResult UploadFile([FromForm] FileImportViewModel vm)
+    {
+
+        string path = _common.PathFileUpload(vm.File).Result;
+        
+        return Ok(new ResponeDataViewModel(ResponseStatusCode.Success, path));
     }
 }

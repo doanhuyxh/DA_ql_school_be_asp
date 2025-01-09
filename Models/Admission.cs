@@ -25,9 +25,6 @@ namespace BeApi.Models
         public string? Email { set; get; }
         public string? PhoneNumber { set; get; }
         public bool IsSendMail { set; get; } // đã gửi mail trúng tuyển
-        public bool IsPayment { set; get; } // đã thanh toán
-        public string? Class { set; get; } // set lớp học
-        public string? StudentCode { set; get; } // mã sinh viên sinh ra từ code
         public bool IsMatriculated { set; get; } // đã trúng tuyển
     }
 }

@@ -41,9 +41,9 @@ public class StudentProfileViewModel
             HealthInsuranceNumber = item.HealthInsuranceNumber,
             PhoneNumber = item.PhoneNumber,
             AdmissionYear = item.AdmissionYear,
-            StudentClassId = item.StudentClassId,
-            MajorId = item.MajorId,
-            FacultyId = item.FacultyId,
+            StudentClassId = item.StudentClassId??0,
+            MajorId = item.MajorId??0,
+            FacultyId = item.FacultyId??0,
             UserId = item.UserId
         };
     }

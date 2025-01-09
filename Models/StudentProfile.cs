@@ -7,9 +7,9 @@ public class StudentProfile // Thông tin hồ sơn sinh viên
 {
     [Key]
     public int Id { get; set; }
-    public string? StudentCode { get; set; } // SBD
     public string? FirstName { set; get; }
     public string? LastName { set; get; }
+    public string? StudentCode { set; get; } 
     public string? DateOfBirth { set; get; } // ngày sinh
     public string? Avatar { set; get; }
     public string? Gender { set; get; }
@@ -19,9 +19,9 @@ public class StudentProfile // Thông tin hồ sơn sinh viên
     public string? HealthInsuranceNumber { set; get; } // số bảo hiểm y tế
     public string? PhoneNumber { set; get; } // số điện thoại
     public int AdmissionYear { set; get; } // năm nhập học
-    public int StudentClassId { set; get; } // lớp học
-    public int  MajorId { set; get; } // chuyên ngành
-    public int  FacultyId { set; get; } // khoa
+    public int? StudentClassId { set; get; } // lớp học
+    public int?  MajorId { set; get; } // chuyên ngành
+    public int?  FacultyId { set; get; } // khoa
     public int UserId { set; get; } // set userId
     
     [ForeignKey("UserId")]

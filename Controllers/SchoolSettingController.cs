@@ -24,7 +24,7 @@ public class SchoolSettingController : ControllerBase
     }
     
     [HttpGet("get-faculty")]
-    public IActionResult GetFaculty([FromQuery] int page = 0, [FromQuery] int paeSize = 10, [FromQuery] string search = "", [FromQuery] int majorId = 0)
+    public IActionResult GetFaculty([FromQuery] int page = 1, [FromQuery] int paeSize = 10, [FromQuery] string search = "", [FromQuery] int majorId = 0)
     {
         var query = _context.Faculty.AsQueryable();
         
@@ -38,7 +38,7 @@ public class SchoolSettingController : ControllerBase
             query = query.Where(x => x.FacultyName.Contains(search));
         }
         
-        var faculty = query.Skip(page * paeSize).Take(paeSize).ToList();
+        var faculty = query.Skip((page-1) * paeSize).Take(paeSize).ToList();
         
         return Ok(new ResponeDataViewModel(ResponseStatusCode.Success, faculty));
     }
@@ -95,7 +95,7 @@ public class SchoolSettingController : ControllerBase
     }
     
     [HttpGet("get-major")]
-    public IActionResult GetMajor([FromQuery] int page = 0, [FromQuery] int paeSize = 10, [FromQuery] string search = "")
+    public IActionResult GetMajor([FromQuery] int page = 1, [FromQuery] int paeSize = 10, [FromQuery] string search = "")
     {
         var query = _context.Major.AsQueryable();
         
@@ -104,7 +104,7 @@ public class SchoolSettingController : ControllerBase
             query = query.Where(x => x.MajorName.Contains(search));
         }
         
-        var major = query.Skip(page * paeSize).Take(paeSize).ToList();
+        var major = query.Skip((page-1) * paeSize).Take(paeSize).ToList();
         
         return Ok(new ResponeDataViewModel(ResponseStatusCode.Success, major));
     }
